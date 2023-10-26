@@ -18,7 +18,8 @@ for (let index = 0; index < DATA_LIST.length; index++) {
   // }
   array.push(
     new Promise((resolve, reject) => {
-      https
+      //echarts.apache.org/examples/examples/js/gl/bar3d-voxelize-image.js?_v_1697620456578
+      https: https
         .get(
           `https://echarts.apache.org/examples/examples/ts/${element.id}.ts?_v_1696986848323`,
           (resp) => {
@@ -33,10 +34,10 @@ for (let index = 0; index < DATA_LIST.length; index++) {
               }
               resolve();
               console.log(n + 1 + '/265');
-              if (n + 1 == 265) {
+              if (n + 1 == 324) {
                 console.log(true);
               }
-              if (n + 1 > 260) {
+              if (n + 1 > 324) {
                 console.log(ids.filter((e) => !idsOld.includes(e)));
               }
               n += 1;

@@ -4,8 +4,8 @@
 
 <script>
 import { keywords } from '../data/option-keywords';
-import { loadScriptsAsync } from '../common/helper';
-import { store } from '../common/store';
+import { loadScriptsAsync, formatCode } from '../common/helper';
+import { store, loadExampleCode, parseSourceCode } from '../common/store';
 import { SCRIPT_URLS } from '../common/config';
 
 function ensureACE() {
@@ -48,28 +48,60 @@ export default {
 
   mounted() {
     this.loading = true;
-    ensureACE().then(() => {
-      const editor = ace.edit(this.$el);
-      editor.getSession().setMode('ace/mode/javascript');
-      editor.setOptions({
-        enableBasicAutocompletion: true,
-        enableSnippets: true,
-        tabSize: 2,
-        enableLiveAutocompletion: true
+    ensureACE()
+      .then(() => {
+        const editor = ace.edit(this.$el);
+        editor.getSession().setMode('ace/mode/javascript');
+        editor.setOptions({
+          enableBasicAutocompletion: true,
+          enableSnippets: true,
+          tabSize: 2,
+          enableLiveAutocompletion: true
+        });
+
+        this._editor = editor;
+
+        editor.on('change', () => {
+          store.sourceCode = store.runCode = editor.getValue();
+          window.parent.postMessage(editor.getValue());
+        });
+
+        if (this.initialCode) {
+          this.setInitialCode(this.initialCode);
+        }
+
+        this.loading = false;
+      })
+      .catch(() => {
+        this.loading = false;
       });
 
-      this._editor = editor;
-
-      editor.on('change', () => {
-        store.sourceCode = store.runCode = editor.getValue();
-      });
-
-      if (this.initialCode) {
-        this.setInitialCode(this.initialCode);
-      }
-
-      this.loading = false;
-    });
+    window.addEventListener(
+      'message',
+      (e) => {
+        // console.log(e, 'parent');
+        if (
+          typeof e.data === 'string' &&
+          (JSON.parse(e.data)?.code || JSON.parse(e.data)?.c)
+        ) {
+          window.result = JSON.parse(e.data)?.result;
+          console.log(window);
+          !c
+            ? formatCode(JSON.parse(e.data)?.code).then((v) => {
+                this.setInitialCode(v);
+              })
+            : loadExampleCode(c).then((code) => {
+                // Only set the code in editor. editor will sync to the store.
+                const resCode = parseSourceCode(code);
+                this.setInitialCode(resCode);
+                // if (store.initialCode !== CODE_CHANGED_FLAG) {
+                //   store.initialCode = this.initialCode;
+                // }
+              });
+        }
+      },
+      false
+    );
   },
 
   methods: {

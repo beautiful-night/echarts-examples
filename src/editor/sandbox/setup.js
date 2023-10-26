@@ -1,5 +1,7 @@
 function setup(isShared) {
-  const sendMessage = (payload) => parent.postMessage(payload, '*');
+  const sendMessage = (payload) => {
+    return parent.postMessage(payload, '*');
+  };
 
   const chartStyleEl = document.head.querySelector('#chart-styles');
 

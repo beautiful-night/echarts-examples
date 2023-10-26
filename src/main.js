@@ -27,6 +27,8 @@ export function init(el, option) {
   store.cdnRoot = option.cdnRoot;
   store.version = option.version;
   store.locale = option.locale || 'en';
+  store.runCode = option.runCode || '';
+  store.sourceCode = option.runCode || '';
 
   if (typeof el === 'string') {
     el = document.querySelector(el);

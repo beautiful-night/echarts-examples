@@ -2,7 +2,7 @@
 title: ECharts-GL Hello World
 category: globe
 titleCN: ECharts-GL Hello World
-scripts: 'https://fastly.jsdelivr.net/gh/ecomfe/echarts-gl/dist/echarts-gl.min.js'
+scripts: 'https://jsd.cdn.zzko.cn/gh/ecomfe/echarts-gl/dist/echarts-gl.min.js'
 videoStart: 2000
 videoEnd: 6000
 */

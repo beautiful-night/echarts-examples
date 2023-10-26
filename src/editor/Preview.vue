@@ -7,7 +7,7 @@
       ref="chartPanel"
       :style="{ background: backgroundColor }"
     ></div>
-    <div id="tool-panel">
+    <!-- <div id="tool-panel">
       <div class="left-panel">
         <el-switch
           class="dark-mode"
@@ -25,7 +25,6 @@
           :inactive-text="''"
         >
         </el-switch>
-        <!-- Not display when random button is displayed on mobile devices. -->
         <el-popover
           placement="bottom"
           trigger="click"
@@ -100,9 +99,9 @@
         class="edit btn btn-sm"
         >{{ $t('editor.edit') }}</a
       >
-    </div>
+    </div> -->
 
-    <div id="preview-status">
+    <!-- <div id="preview-status">
       <div class="left-buttons">
         <template v-if="inEditor && !shared.isMobile">
           <el-button
@@ -140,7 +139,7 @@
           shared.editorStatus.message
         }}</span>
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -661,7 +660,7 @@ export default {
 #chart-panel {
   position: absolute;
   // top: $control-panel-height;
-  top: 42px;
+  top: 16px;
   right: 15px;
   bottom: 50px;
   left: 15px;
@@ -671,6 +670,7 @@ export default {
   background: #fff;
   overflow: hidden;
   padding: 10px;
+  height: calc(100% - 32px);
 }
 
 .render-config-container {

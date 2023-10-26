@@ -107,7 +107,8 @@ const URL_PARAMS = {};
 export { URL_PARAMS };
 
 // https://npm.elemecdn.com/
-export const CDN_ROOT = 'https://fastly.jsdelivr.net/npm/';
+// https://fastly.jsdelivr.net/npm/' 国际镜像
+export const CDN_ROOT = 'https://jsd.cdn.zzko.cn/npm/';
 
 export const SCRIPT_URLS = {
   echartsDir: `${CDN_ROOT}echarts@{{version}}`,
@@ -126,7 +127,7 @@ export const SCRIPT_URLS = {
   monacoDir: `${CDN_ROOT}monaco-editor@0.27.0/min/vs`,
   aceDir: `${CDN_ROOT}ace-builds@1.4.12/src-min-noconflict`,
   prettierDir: `${CDN_ROOT}prettier@2.3.2`,
-  highlightjsDir: `https://fastly.jsdelivr.net/gh/highlightjs/cdn-release@11.8.0/build`,
+  highlightjsDir: `https://jsd.cdn.zzko.cn/gh/highlightjs/cdn-release@11.8.0/build`,
   seedrandomJS: `${CDN_ROOT}seedrandom@3.0.5/seedrandom.min.js`,
   jQueryJS: `${CDN_ROOT}jquery@3.7.1/dist/jquery.min.js`,
   acornJS: `${CDN_ROOT}acorn@8.7.1/dist/acorn.min.js`,

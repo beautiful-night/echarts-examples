@@ -27,23 +27,31 @@
 </template>
 
 <script>
-import { store } from '../common/store';
 import { URL_PARAMS } from '../common/config';
 
 export default {
-  props: ['example'],
+  props: {
+    example: Object,
+    cdnRoot: String,
+    version: String,
+    darkMode: Boolean,
+    locale: {
+      type: String,
+      default: 'zh'
+    }
+  },
 
   computed: {
     title() {
       return (
-        (store.locale === 'zh' ? this.example.titleCN : this.example.title) ||
+        (this.locale === 'zh' ? this.example.titleCN : this.example.title) ||
         this.example.title ||
         ''
       );
     },
 
     showSubtitle() {
-      return store.locale === 'zh';
+      return this.locale === 'zh';
     },
 
     subtitle() {
@@ -52,7 +60,7 @@ export default {
 
     exampleTheme() {
       const example = this.example;
-      return example.theme || (store.darkMode ? 'dark' : '');
+      return example.theme || (this.darkMode ? 'dark' : '');
     },
 
     exampleLink() {
@@ -76,11 +84,11 @@ export default {
     },
 
     screenshotURLWebP() {
-      return `${store.cdnRoot}/${this.exampleThumbFilePath}.webp?_v_=${store.version}`;
+      return `${this.cdnRoot}/${this.exampleThumbFilePath}.webp?_v_=${this.version}`;
     },
 
     screenshotURLPNG() {
-      return `${store.cdnRoot}/${this.exampleThumbFilePath}.png?_v_=${store.version}`;
+      return `${this.cdnRoot}/${this.exampleThumbFilePath}.png?_v_=${this.version}`;
     }
   }
 };

@@ -47,7 +47,12 @@
               v-for="exampleItem in categoryObj.examples"
               :key="exampleItem.id"
             >
-              <ExampleCard :example="exampleItem"></ExampleCard>
+              <ExampleCard
+                :example="exampleItem"
+                :cdnRoot="'../'"
+                :version="Date.now()"
+                :darkMode="darkMode"
+              ></ExampleCard>
             </div>
           </div>
         </div>
@@ -55,7 +60,7 @@
     </div>
     <div id="toolbar">
       <el-switch
-        v-model="shared.darkMode"
+        v-model="darkMode"
         active-color="#181432"
         :active-text="$t('editor.darkMode')"
         :inactive-text="''"
@@ -69,7 +74,6 @@
 import CHART_LIST from '../data/chart-list-data';
 import CHART_LIST_GL from '../data/chart-list-data-gl';
 import { EXAMPLE_CATEGORIES, BLACK_MAP } from '../common/config';
-import { store } from '../common/store';
 import ExampleCard from './ExampleCard.vue';
 import LazyLoad from 'vanilla-lazyload/dist/lazyload.esm';
 
@@ -176,7 +180,7 @@ export default {
     addExamples(CHART_LIST_GL, true);
 
     return {
-      shared: store,
+      darkMode: false,
 
       icons,
 
@@ -191,7 +195,7 @@ export default {
   },
 
   watch: {
-    'shared.darkMode'() {
+    darkMode() {
       const imgs = this.$el.querySelectorAll('img.chart-area');
       for (let i = 0; i < imgs.length; i++) {
         // Force lazyload to update

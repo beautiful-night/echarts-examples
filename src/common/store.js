@@ -9,6 +9,9 @@ import {
   isTrustedOpener
 } from './helper';
 import { customAlphabet } from 'nanoid';
+import optionObj from '../data/optionsJs';
+import { formatCode } from './helper';
+import qs from 'qs';
 
 const nanoid = customAlphabet('1234567890abcdefghijklmnopqrstuvwxyz', 10);
 
@@ -35,6 +38,7 @@ export const store = {
       ? renderer
       : 'canvas';
   })(),
+  codeCallback: () => null,
 
   typeCheck:
     getExampleConfig() &&
@@ -114,7 +118,7 @@ export function clearLocalExampleCode() {
   localStorage.removeItem(LOCAL_EXAMPLE_CODE_STORE_KEY);
 }
 
-export function loadExampleCode() {
+export function loadExampleCode(c) {
   const localCode = loadExampleCodeFromLocal();
   if (localCode) {
     clearLocalExampleCode();
@@ -150,19 +154,30 @@ export function loadExampleCode() {
     const glFolder = 'gl' in URL_PARAMS ? 'gl/' : '';
     const lang = store.typeCheck ? 'ts' : 'js';
     // fallback to line-simple if no c is provided
-    const c = URL_PARAMS.c || 'line-simple';
-    $.ajax(
-      `${store.cdnRoot}/examples/${lang}/${glFolder}${c}.${lang}?_v_${store.version}`,
-      {
-        dataType: 'text',
-        success(data) {
-          resolve(data);
-        },
-        error() {
-          reject('failed to load example', c);
-        }
-      }
-    );
+    // const c = URL_PARAMS.c || 'line-simple';
+
+    var prefixed = qs.parse(window.location.search, {
+      ignoreQueryPrefix: true
+    });
+    formatCode(c ? optionObj[c] : optionObj[prefixed.c]).then((v) => {
+      resolve(v);
+    });
+    // resolve(optionObj[window.location.search?.split?.('=')?.[1]]);
+
+    // $.ajax(
+    //   `https://echarts.apache.org/examples/examples/${lang}/${
+    //     window.location.search?.split?.('=')?.[1]
+    //   }.${lang}?_v_1696986848323`,
+    //   {
+    //     dataType: 'text',
+    //     success(data) {
+    //       resolve(data);
+    //     },
+    //     error() {
+    //       reject('failed to load example', c);
+    //     }
+    //   }
+    // );
   });
 }
 

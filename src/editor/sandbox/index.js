@@ -179,7 +179,10 @@ export function createSandbox(
   }
 
   function sendMessage(action, argumentMap) {
-    sandbox.contentWindow.postMessage({ action, ...argumentMap }, '*');
+    sandbox.contentWindow.postMessage(
+      JSON.parse(JSON.stringify({ action, ...argumentMap })),
+      '*'
+    );
   }
 
   window.addEventListener('message', handleMessage, false);

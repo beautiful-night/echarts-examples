@@ -11,7 +11,7 @@
           <el-container>
             <el-header id="editor-control-panel">
               <div class="languages">
-                <el-tooltip
+                <!-- <el-tooltip
                   :content="$t('editor.tooltip.jsMode')"
                   placement="bottom"
                 >
@@ -34,10 +34,10 @@
                     }"
                     >TS</a
                   >
-                </el-tooltip>
+                </el-tooltip> -->
               </div>
               <div class="editor-controls">
-                <a
+                <!-- <a
                   v-if="shared.isPR"
                   class="btn btn-default btn-sm pull-request"
                   target="_blank"
@@ -90,7 +90,7 @@
                       stroke-linejoin="round"
                     ></path>
                   </svg>
-                </a>
+                </a> -->
                 <a
                   class="btn btn-sm format"
                   :title="$t('editor.format')"
@@ -137,18 +137,18 @@
               </div>
             </el-header>
             <el-main>
-              <CodeMonaco
+              <!-- <CodeMonaco
                 v-if="shared.typeCheck"
                 id="code-panel"
                 :initialCode="initialCode"
                 @ready="prepareFormatter"
-              />
-              <CodeAce v-else id="code-panel" :initialCode="initialCode" />
+              /> -->
+              <CodeAce id="code-panel" :initialCode="initialCode" />
             </el-main>
           </el-container>
         </el-tab-pane>
 
-        <el-tab-pane
+        <!-- <el-tab-pane
           :label="$t('editor.tabFullCodePreview')"
           name="full-code"
           :lazy="true"
@@ -156,7 +156,7 @@
           <el-container style="width: 100%; height: 100%">
             <el-header id="full-code-generate-config">
               <span class="full-code-generate-config-label">
-                <!-- <i class="el-icon-setting"></i> 配置 -->
+                <i class="el-icon-setting"></i> 配置
               </span>
               <el-switch
                 v-model="fullCodeConfig.minimal"
@@ -386,7 +386,7 @@
               </el-descriptions-item>
             </el-descriptions>
           </div>
-        </el-tab-pane>
+        </el-tab-pane> -->
       </el-tabs>
     </div>
     <div
@@ -483,13 +483,13 @@ export default {
         store.runCode = parseSourceCode(code);
       });
     } else {
-      loadExampleCode().then((code) => {
-        // Only set the code in editor. editor will sync to the store.
-        this.initialCode = parseSourceCode(code);
-        if (store.initialCode !== CODE_CHANGED_FLAG) {
-          store.initialCode = this.initialCode;
-        }
-      });
+      // loadExampleCode().then((code) => {
+      //   // Only set the code in editor. editor will sync to the store.
+      //   this.initialCode = parseSourceCode(code);
+      //   if (store.initialCode !== CODE_CHANGED_FLAG) {
+      //     store.initialCode = this.initialCode;
+      //   }
+      // });
 
       window.addEventListener('mousemove', (e) => {
         if (this.draggingMouseDown) {
