@@ -6,7 +6,7 @@ titleCN: Scatter3D - Simplex Noise
 */
 
 $.getScript(
-  'https://jsd.cdn.zzko.cn/npm/simplex-noise@2.4.0/simplex-noise.js'
+  'https://fastly.jsdelivr.net/npm/simplex-noise@2.4.0/simplex-noise.js'
 ).done(function () {
   var noise = new SimplexNoise(Math.random);
   function generateData(theta, min, max) {

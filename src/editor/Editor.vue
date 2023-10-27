@@ -143,7 +143,11 @@
                 :initialCode="initialCode"
                 @ready="prepareFormatter"
               /> -->
-              <CodeAce id="code-panel" :initialCode="initialCode" />
+              <CodeAce
+                id="code-panel"
+                :initialCode="initialCode"
+                @hanldeResult="hanldeResult"
+              />
             </el-main>
           </el-container>
         </el-tab-pane>
@@ -397,7 +401,9 @@
       v-if="!shared.isMobile"
     ></div>
     <Preview
+      v-if="!!result"
       :inEditor="true"
+      :result="result"
       @ready="onPreviewReady"
       class="right-container"
       ref="preview"
@@ -464,8 +470,8 @@ export default {
       prLatestReview: null,
       isPRReviewLoading: false,
       isPRDiffLoading: false,
-
-      draggingMouseDown: false
+      draggingMouseDown: false,
+      result: null
     };
   },
 
@@ -531,6 +537,9 @@ export default {
   },
 
   methods: {
+    hanldeResult(result) {
+      this.result = result || {};
+    },
     toExternalEditor(vendor) {
       const previewRef = this.$refs.preview;
       if (!previewRef) {
@@ -548,7 +557,7 @@ export default {
       );
     },
     disposeAndRun() {
-      this.$refs.preview.refreshAll();
+      this.$refs.preview && this.$refs.preview.refreshAll();
     },
     updateFullCode() {
       const option = this.$refs.preview.getOption();

@@ -132,6 +132,10 @@ export function createSandbox(
             : `<script src="${script.src}"></script>`
         )
         .join('')
+    )
+    .replace(
+      '__RESULT__',
+      `<script>window.result=${JSON.stringify(window.result)}</script>`
     );
   sandbox.style.cssText = 'width:100%;height:100%;border:none;background:none';
   sandbox.onload = () => {

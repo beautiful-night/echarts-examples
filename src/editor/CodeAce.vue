@@ -15,7 +15,6 @@ function ensureACE() {
       SCRIPT_URLS.aceDir + '/ext-language_tools.js'
     ]).then(function () {
       const lnTools = ace.require('ace/ext/language_tools');
-
       const completions = [];
       keywords.forEach((keyword) => {
         completions.push({
@@ -79,25 +78,28 @@ export default {
     window.addEventListener(
       'message',
       (e) => {
-        // console.log(e, 'parent');
-        if (
-          typeof e.data === 'string' &&
-          (JSON.parse(e.data)?.code || JSON.parse(e.data)?.c)
-        ) {
-          window.result = JSON.parse(e.data)?.result;
-          console.log(window);
-          !c
-            ? formatCode(JSON.parse(e.data)?.code).then((v) => {
-                this.setInitialCode(v);
-              })
-            : loadExampleCode(c).then((code) => {
-                // Only set the code in editor. editor will sync to the store.
-                const resCode = parseSourceCode(code);
-                this.setInitialCode(resCode);
-                // if (store.initialCode !== CODE_CHANGED_FLAG) {
-                //   store.initialCode = this.initialCode;
-                // }
-              });
+        try {
+          this.$emit('hanldeResult', JSON.parse(e.data)?.result);
+          if (
+            typeof e.data === 'string' &&
+            (JSON.parse(e.data)?.code || JSON.parse(e.data)?.c)
+          ) {
+            const c = JSON.parse(e.data)?.c;
+            !c
+              ? formatCode(JSON.parse(e.data)?.code).then((v) => {
+                  this.setInitialCode(v);
+                })
+              : loadExampleCode(c).then((code) => {
+                  // Only set the code in editor. editor will sync to the store.
+                  const resCode = parseSourceCode(code);
+                  this.setInitialCode(resCode);
+                  // if (store.initialCode !== CODE_CHANGED_FLAG) {
+                  //   store.initialCode = this.initialCode;
+                  // }
+                });
+          }
+        } catch (error) {
+          console.log('CodeAce');
         }
       },
       false

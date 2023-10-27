@@ -333,7 +333,8 @@ export default {
   props: {
     inEditor: {
       type: Boolean
-    }
+    },
+    result: Object
   },
 
   data() {
@@ -355,6 +356,7 @@ export default {
   },
 
   mounted() {
+    window.result = this.result;
     this.run();
 
     this.fetchVersionList();
