@@ -194,7 +194,7 @@ function getScripts(nightly) {
     ...(isGL
       ? [
           isLocal
-            ? SCRIPT_URLS.localEChartsGLDir + '/dist/echarts-gl.js'
+            ? SCRIPT_URLS.localEChartsGLDir + '/echarts-gl.js'
             : getScriptURL(SCRIPT_URLS.echartsGLJS)
         ]
       : []),
@@ -577,59 +577,59 @@ export default {
       const prVersion = URL_PARAMS.pv;
       const hasPRVersion = (this.hasPRVersion = isValidPRVersion(prVersion));
 
-      $.getJSON(`${server}/echarts`).done((data) => {
-        handleData(data);
+      // $.getJSON(`${server}/echarts`).done((data) => {
+      //   handleData(data);
 
-        if (isDebug) {
-          console.log('echarts version data', data);
-        }
+      //   if (isDebug) {
+      //     console.log('echarts version data', data);
+      //   }
 
-        const versions = data.versions.filter(
-          (version) =>
-            version.indexOf('beta') < 0 &&
-            version.indexOf('rc') < 0 &&
-            version.indexOf('alpha') < 0 &&
-            version.startsWith('5') // Only version 5.
-        );
-        this.allEChartsVersions = versions;
+      //   const versions = data.versions.filter(
+      //     (version) =>
+      //       version.indexOf('beta') < 0 &&
+      //       version.indexOf('rc') < 0 &&
+      //       version.indexOf('alpha') < 0 &&
+      //       version.startsWith('5') // Only version 5.
+      //   );
+      //   this.allEChartsVersions = versions;
 
-        // Use latest version
-        if (
-          !store.echartsVersion ||
-          store.echartsVersion === '5' ||
-          store.echartsVersion === 'latest'
-        ) {
-          store.echartsVersion = versions[0];
-        }
+      //   // Use latest version
+      //   if (
+      //     !store.echartsVersion ||
+      //     store.echartsVersion === '5' ||
+      //     store.echartsVersion === 'latest'
+      //   ) {
+      //     store.echartsVersion = versions[0];
+      //   }
 
-        // put latest rc version for preview
-        if (gt(data.tags.rc.split('-')[0], data.tags.latest)) {
-          versions.unshift(data.tags.rc);
-          store.echartsVersion === 'rc' && (store.echartsVersion = versions[0]);
-        }
+      //   // put latest rc version for preview
+      //   if (gt(data.tags.rc.split('-')[0], data.tags.latest)) {
+      //     versions.unshift(data.tags.rc);
+      //     store.echartsVersion === 'rc' && (store.echartsVersion = versions[0]);
+      //   }
 
-        hasPRVersion && versions.unshift(prVersion);
-      });
+      //   hasPRVersion && versions.unshift(prVersion);
+      // });
 
-      $.getJSON(`${server}/echarts-nightly`).done((data) => {
-        handleData(data);
+      // $.getJSON(`${server}/echarts-nightly`).done((data) => {
+      //   handleData(data);
 
-        if (isDebug) {
-          console.log('echarts-nightly version data', data);
-        }
+      //   if (isDebug) {
+      //     console.log('echarts-nightly version data', data);
+      //   }
 
-        const {
-          tags: { latest, next },
-          versions
-        } = data;
-        const nextIdx = versions.indexOf(next);
-        const latestIdx = versions.indexOf(latest);
-        this.nightlyVersions = versions
-          .slice(nextIdx, nextIdx + 10)
-          .concat(versions.slice(latestIdx, latestIdx + 10));
+      //   const {
+      //     tags: { latest, next },
+      //     versions
+      //   } = data;
+      //   const nextIdx = versions.indexOf(next);
+      //   const latestIdx = versions.indexOf(latest);
+      //   this.nightlyVersions = versions
+      //     .slice(nextIdx, nextIdx + 10)
+      //     .concat(versions.slice(latestIdx, latestIdx + 10));
 
-        hasPRVersion && this.nightlyVersions.unshift(prVersion);
-      });
+      //   hasPRVersion && this.nightlyVersions.unshift(prVersion);
+      // });
 
       if (isDebug) {
         console.log(

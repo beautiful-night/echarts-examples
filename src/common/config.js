@@ -108,12 +108,13 @@ export { URL_PARAMS };
 
 // https://npm.elemecdn.com/
 // https://fastly.jsdelivr.net/npm/' 国际镜像
-export const CDN_ROOT = 'https://fastly.jsdelivr.net/npm/';
+// export const CDN_ROOT = 'https://fastly.jsdelivr.net/npm/';
+export const CDN_ROOT = '/proxverse-npm/';
 
 export const SCRIPT_URLS = {
-  echartsDir: `${CDN_ROOT}echarts@{{version}}`,
+  echartsDir: `${CDN_ROOT}js/echarts@5`, //${CDN_ROOT}echarts@{{version}}
   echartsNightlyDir: `${CDN_ROOT}echarts-nightly@{{version}}`,
-  echartsJS: '/dist/echarts.min.js',
+  echartsJS: '/echarts.min.js',
 
   localEChartsDir: 'http://localhost/echarts',
   localEChartsGLDir: 'http://localhost/echarts-gl',
@@ -122,15 +123,15 @@ export const SCRIPT_URLS = {
 
   echartsWorldMapJS: `${CDN_ROOT}echarts@4.9.0/map/js/world.js`,
   echartsStatJS: `${CDN_ROOT}echarts-stat@latest/dist/ecStat.min.js`,
-  echartsGLJS: `${CDN_ROOT}echarts-gl@2/dist/echarts-gl.min.js`,
+  echartsGLJS: `${CDN_ROOT}js/echarts-gl@2/echarts-gl.min.js`, //${CDN_ROOT}echarts-gl@2/dist/echarts-gl.min.js
   datGUIMinJS: `${CDN_ROOT}dat.gui@0.6.5/build/dat.gui.min.js`,
   monacoDir: `${CDN_ROOT}monaco-editor@0.27.0/min/vs`,
-  aceDir: `${CDN_ROOT}ace-builds@1.4.12/src-min-noconflict`,
-  prettierDir: `${CDN_ROOT}prettier@2.3.2`,
+  aceDir: `${CDN_ROOT}js`, //${CDN_ROOT}ace-builds@1.4.12/src-min-noconflict
+  prettierDir: `${CDN_ROOT}js/prettier@2.3.2`, //${CDN_ROOT}prettier@2.3.2
   highlightjsDir: `https://fastly.jsdelivr.net/gh/highlightjs/cdn-release@11.8.0/build`,
-  seedrandomJS: `${CDN_ROOT}seedrandom@3.0.5/seedrandom.min.js`,
+  seedrandomJS: `${CDN_ROOT}js/seedrandom@3.0.5/seedrandom.min.js`, //${CDN_ROOT}seedrandom@3.0.5/seedrandom.min.js
   jQueryJS: `${CDN_ROOT}jquery@3.7.1/dist/jquery.min.js`,
-  acornJS: `${CDN_ROOT}acorn@8.7.1/dist/acorn.min.js`,
+  acornJS: `${CDN_ROOT}js/acorn@8.7.1/acorn.min.js`, //${CDN_ROOT}acorn@8.7.1/dist/acorn.min.js
 
   bmapLibJS:
     'https://api.map.baidu.com/api?v=3.0&ak=KOmVjPVUAey1G2E8zNhPiuQ6QiEmAwZu',

@@ -11,7 +11,7 @@
           <el-container>
             <el-header id="editor-control-panel">
               <div class="languages">
-                <!-- <el-tooltip
+                <el-tooltip
                   :content="$t('editor.tooltip.jsMode')"
                   placement="bottom"
                 >
@@ -34,10 +34,10 @@
                     }"
                     >TS</a
                   >
-                </el-tooltip> -->
+                </el-tooltip>
               </div>
               <div class="editor-controls">
-                <!-- <a
+                <a
                   v-if="shared.isPR"
                   class="btn btn-default btn-sm pull-request"
                   target="_blank"
@@ -90,7 +90,7 @@
                       stroke-linejoin="round"
                     ></path>
                   </svg>
-                </a> -->
+                </a>
                 <a
                   class="btn btn-sm format"
                   :title="$t('editor.format')"
@@ -152,7 +152,7 @@
           </el-container>
         </el-tab-pane>
 
-        <!-- <el-tab-pane
+        <el-tab-pane
           :label="$t('editor.tabFullCodePreview')"
           name="full-code"
           :lazy="true"
@@ -390,7 +390,7 @@
               </el-descriptions-item>
             </el-descriptions>
           </div>
-        </el-tab-pane> -->
+        </el-tab-pane>
       </el-tabs>
     </div>
     <div
@@ -401,7 +401,6 @@
       v-if="!shared.isMobile"
     ></div>
     <Preview
-      v-if="!!result"
       :inEditor="true"
       :result="result"
       @ready="onPreviewReady"
