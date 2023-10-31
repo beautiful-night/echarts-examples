@@ -121,8 +121,8 @@ export const SCRIPT_URLS = {
 
   prPreviewEChartsDir: 'https://echarts-pr-{{PR_NUMBER}}.surge.sh',
 
-  echartsWorldMapJS: `${CDN_ROOT}echarts@4.9.0/map/js/world.js`,
-  echartsStatJS: `${CDN_ROOT}echarts-stat@latest/dist/ecStat.min.js`,
+  echartsWorldMapJS: `${CDN_ROOT}js/echarts@4.9.0/world.js`,
+  echartsStatJS: `${CDN_ROOT}js/echarts-stat@latest/ecStat.min.js`,
   echartsGLJS: `${CDN_ROOT}js/echarts-gl@2/echarts-gl.min.js`, //${CDN_ROOT}echarts-gl@2/dist/echarts-gl.min.js
   datGUIMinJS: `${CDN_ROOT}dat.gui@0.6.5/build/dat.gui.min.js`,
   monacoDir: `${CDN_ROOT}monaco-editor@0.27.0/min/vs`,
@@ -135,5 +135,5 @@ export const SCRIPT_URLS = {
 
   bmapLibJS:
     'https://api.map.baidu.com/api?v=3.0&ak=KOmVjPVUAey1G2E8zNhPiuQ6QiEmAwZu',
-  echartsBMapJS: '/dist/extension/bmap.min.js'
+  echartsBMapJS: '/bmap.min.js'
 };

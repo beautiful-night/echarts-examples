@@ -78,12 +78,12 @@ export default {
     window.addEventListener(
       'message',
       (e) => {
+        if (typeof e.data !== 'string') {
+          return;
+        }
         try {
           this.$emit('hanldeResult', JSON.parse(e.data)?.result);
-          if (
-            typeof e.data === 'string' &&
-            (JSON.parse(e.data)?.code || JSON.parse(e.data)?.c)
-          ) {
+          if (JSON.parse(e.data)?.code || JSON.parse(e.data)?.c) {
             const c = JSON.parse(e.data)?.c;
             !c
               ? formatCode(JSON.parse(e.data)?.code).then((v) => {
@@ -98,9 +98,7 @@ export default {
                   // }
                 });
           }
-        } catch (error) {
-          console.log('CodeAce');
-        }
+        } catch (error) {}
       },
       false
     );
