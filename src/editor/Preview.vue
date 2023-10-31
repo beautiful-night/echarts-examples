@@ -153,7 +153,7 @@ import {
   updateRunHash,
   isValidPRVersion
 } from '../common/store';
-import { SCRIPT_URLS, URL_PARAMS } from '../common/config';
+import { SCRIPT_URLS, URL_PARAMS, CDN_ROOT } from '../common/config';
 import { compressStr } from '../common/helper';
 import { createSandbox } from './sandbox';
 import debounce from 'lodash/debounce';
@@ -210,7 +210,9 @@ function getScripts(nightly) {
     ...(/map.*:.*['"]world['"]/g.test(code)
       ? [SCRIPT_URLS.echartsWorldMapJS]
       : []),
-    ...(code.indexOf('app.config') > -1 ? [SCRIPT_URLS.datGUIMinJS] : [])
+    ...(code.indexOf('app.config') > -1 ? [SCRIPT_URLS.datGUIMinJS] : []),
+    CDN_ROOT + '/js/echarts-simple-transform/ecSimpleTransform.min.js',
+    CDN_ROOT + '/js/d3-hierarchy@2.0.0/d3-hierarchy.min.js'
   ].map((url) => ({ src: url }));
 }
 
