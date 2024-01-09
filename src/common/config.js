@@ -124,7 +124,7 @@ export const SCRIPT_URLS = {
   echartsWorldMapJS: `${CDN_ROOT}js/echarts@4.9.0/world.js`,
   echartsStatJS: `${CDN_ROOT}js/echarts-stat@latest/ecStat.min.js`,
   echartsGLJS: `${CDN_ROOT}js/echarts-gl@2/echarts-gl.min.js`, //${CDN_ROOT}echarts-gl@2/dist/echarts-gl.min.js
-  datGUIMinJS: `${CDN_ROOT}dat.gui@0.6.5/build/dat.gui.min.js`,
+  datGUIMinJS: `${CDN_ROOT}js/dat.gui@0.6.5/dat.gui.min.js`,
   monacoDir: `${CDN_ROOT}monaco-editor@0.27.0/min/vs`,
   aceDir: `${CDN_ROOT}js`, //${CDN_ROOT}ace-builds@1.4.12/src-min-noconflict
   prettierDir: `${CDN_ROOT}js/prettier@2.3.2`, //${CDN_ROOT}prettier@2.3.2

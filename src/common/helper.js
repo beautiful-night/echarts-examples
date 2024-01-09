@@ -77,19 +77,24 @@ function ensurePrettier() {
 }
 
 export function formatCode(code) {
-  return ensurePrettier().then(() => {
-    return prettier.format(code, {
-      singleQuote: true,
-      tabWidth: 2,
-      printWidth: 80,
-      semi: true,
-      trailingComma: 'none',
-      // tabWidth: +this.formatCodeSettings.tabSize,
-      // printWidth: +this.formatCodeSettings.maxLineWidth,
-      parser: store.typeCheck ? 'typescript' : 'babel',
-      plugins: prettierPlugins
+  return ensurePrettier()
+    .then(() => {
+      return prettier.format(code, {
+        singleQuote: true,
+        tabWidth: 2,
+        printWidth: 80,
+        semi: true,
+        trailingComma: 'none',
+        // tabWidth: +this.formatCodeSettings.tabSize,
+        // printWidth: +this.formatCodeSettings.maxLineWidth,
+        parser: store.typeCheck ? 'typescript' : 'babel',
+        plugins: prettierPlugins
+      });
+    })
+    .catch(() => {
+      console.log('code error');
+      return code;
     });
-  });
 }
 
 export function compressStr(str) {

@@ -101,8 +101,8 @@
       >
     </div> -->
 
-    <!-- <div id="preview-status">
-      <div class="left-buttons">
+    <div id="preview-status">
+      <!-- <div class="left-buttons">
         <template v-if="inEditor && !shared.isMobile">
           <el-button
             icon="el-icon-download"
@@ -128,7 +128,7 @@
             {{ $t('editor.share.title') }}
           </el-button>
         </template>
-      </div>
+      </div> -->
 
       <div
         id="run-log"
@@ -139,7 +139,7 @@
           shared.editorStatus.message
         }}</span>
       </div>
-    </div> -->
+    </div>
   </div>
 </template>
 
@@ -211,8 +211,9 @@ function getScripts(nightly) {
       ? [SCRIPT_URLS.echartsWorldMapJS]
       : []),
     ...(code.indexOf('app.config') > -1 ? [SCRIPT_URLS.datGUIMinJS] : []),
-    CDN_ROOT + '/js/echarts-simple-transform/ecSimpleTransform.min.js',
-    CDN_ROOT + '/js/d3-hierarchy@2.0.0/d3-hierarchy.min.js'
+    CDN_ROOT + '/js/echarts-simple-transform/ecSimpleTransform.min.js', // data-transform-aggregate
+    CDN_ROOT + '/js/d3-hierarchy@2.0.0/d3-hierarchy.min.js', //circle-packing-with-d3
+    CDN_ROOT + '/js/echarts-wordcloud/echarts-wordcloud.min.js'
   ].map((url) => ({ src: url }));
 }
 
@@ -772,7 +773,7 @@ export default {
 
 #preview-status {
   position: absolute;
-  bottom: 10px;
+  bottom: 0px;
   left: 0;
   right: 0;
   padding: 0 15px;
