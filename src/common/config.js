@@ -109,7 +109,9 @@ export { URL_PARAMS };
 // https://npm.elemecdn.com/
 // https://fastly.jsdelivr.net/npm/' 国际镜像
 // export const CDN_ROOT = 'https://fastly.jsdelivr.net/npm/';
-export const CDN_ROOT = '/proxverse-npm/';
+export const CDN_ROOT =
+  (window.location.pathname?.split?.('/proxverse-npm/')?.[0] || '') +
+  '/proxverse-npm/';
 
 export const SCRIPT_URLS = {
   echartsDir: `${CDN_ROOT}js/echarts@5`, //${CDN_ROOT}echarts@{{version}}
