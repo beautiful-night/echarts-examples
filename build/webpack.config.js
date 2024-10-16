@@ -11,7 +11,10 @@ module.exports = [
     output: {
       publicPath: './',
       filename: 'example-bundle.js',
-      path: path.join(distPath, 'js'),
+      path: path.join(
+        '/Users/chenqiankun/Public/pm-web/sp-engine-code/public/proxverse-npm/bundle/',
+        'js'
+      ),
       library: 'echartsExample',
       libraryTarget: 'var'
     },
